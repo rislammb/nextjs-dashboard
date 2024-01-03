@@ -17,16 +17,7 @@ export async function fetchRevenue() {
   noStore();
 
   try {
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const data = await sql<Revenue>`SELECT * FROM revenue`;
-
-    console.log('Data fetch completed after 3 seconds.');
-
     return data.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -112,7 +103,7 @@ export async function fetchFilteredInvoices(
         customers.name,
         customers.email,
         customers.image_url
-      FROM invoices
+        FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
       WHERE
         customers.name ILIKE ${`%${query}%`} OR
@@ -240,7 +231,7 @@ export async function fetchFilteredCustomers(
 		LEFT JOIN invoices ON customers.id = invoices.customer_id
 		WHERE
 		  customers.name ILIKE ${`%${query}%`} OR
-        customers.email ILIKE ${`%${query}%`}
+      customers.email ILIKE ${`%${query}%`}
 		GROUP BY customers.id, customers.name, customers.email, customers.image_url
 		ORDER BY customers.name ASC
     LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
@@ -266,5 +257,15 @@ export async function getUser(email: string) {
   } catch (error) {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function fetchUserById(id: string) {
+  try {
+    const user = await sql`SELECT * FROM customers WHERE customers.id=${id}`;
+    return user.rows[0];
+  } catch (error) {
+    console.error('Faild fetch user: ', error);
+    throw new Error('Faild to fetch user.');
   }
 }

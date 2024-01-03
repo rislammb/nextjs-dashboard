@@ -26,14 +26,22 @@ export default async function CustomersTable({
                     <div>
                       <div className="mb-2 flex items-center">
                         <div className="flex items-center gap-3">
-                          <Image
-                            src={customer.image_url}
-                            className="rounded-full"
-                            alt={`${customer.name}'s profile picture`}
-                            width={28}
-                            height={28}
-                          />
-                          <Link href={`/dashboard/customers/${customer.id}`}>
+                          <Link
+                            className="transition-opacity hover:opacity-80"
+                            href={`/dashboard/customers/${customer.id}`}
+                          >
+                            <Image
+                              src={customer.image_url}
+                              className="rounded-full"
+                              alt={`${customer.name}'s profile picture`}
+                              width={28}
+                              height={28}
+                            />
+                          </Link>
+                          <Link
+                            className="text-blue-600 transition-colors hover:text-blue-800"
+                            href={`/dashboard/customers/${customer.id}`}
+                          >
                             {customer.name}
                           </Link>
                         </div>
@@ -83,14 +91,24 @@ export default async function CustomersTable({
                   <tr key={customer.id} className="group">
                     <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
                       <div className="flex items-center gap-3">
-                        <Image
-                          src={customer.image_url}
-                          className="rounded-full"
-                          alt={`${customer.name}'s profile picture`}
-                          width={28}
-                          height={28}
-                        />
-                        <p>{customer.name}</p>
+                        <Link
+                          className="w-[28px] transition-opacity hover:opacity-80"
+                          href={`/dashboard/customers/${customer.id}`}
+                        >
+                          <Image
+                            src={customer.image_url}
+                            className="rounded-full"
+                            alt={`${customer.name}'s profile picture`}
+                            width={28}
+                            height={28}
+                          />
+                        </Link>
+                        <Link
+                          className="text-blue-600 transition-colors hover:text-blue-800"
+                          href={`/dashboard/customers/${customer.id}`}
+                        >
+                          {customer.name}
+                        </Link>
                       </div>
                     </td>
                     <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
