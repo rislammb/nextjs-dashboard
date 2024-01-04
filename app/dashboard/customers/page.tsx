@@ -1,8 +1,9 @@
 import { fetchCustomersPages } from '@/app/lib/data';
+import { CreateCustomers } from '@/app/ui/customers/buttons';
 import CustomersTable from '@/app/ui/customers/table';
 import { lusitana } from '@/app/ui/fonts';
-import Pagination from '@/app/ui/invoices/pagination';
-import Search from '@/app/ui/search';
+import Pagination from '@/app/ui/shared/pagination';
+import Search from '@/app/ui/shared/search';
 import { CustomersTableSkeleton } from '@/app/ui/skeletons';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
@@ -30,8 +31,9 @@ export default async function Page({
         <h1 className={`${lusitana.className} text-2xl`}>Customers</h1>
       </div>
 
-      <div className="mt-4 flex items-center justify-between md:mt-8">
+      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search Customers.." />
+        <CreateCustomers />
       </div>
 
       <Suspense key={query + currentPage} fallback={<CustomersTableSkeleton />}>

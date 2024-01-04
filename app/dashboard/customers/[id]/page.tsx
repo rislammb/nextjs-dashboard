@@ -1,6 +1,6 @@
 import { fetchUserById } from '@/app/lib/data';
 import { lusitana } from '@/app/ui/fonts';
-import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
+import Breadcrumbs from '@/app/ui/shared/breadcrumbs';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
