@@ -67,3 +67,16 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+
+export const imageUrls = [
+  '/customers/delba-de-oliveira.png',
+  '/customers/lee-robinson.png',
+  '/customers/hector-simpson.png',
+  '/customers/steven-tey.png',
+  '/customers/steph-dietz.png',
+  '/customers/michael-novotny.png',
+  '/customers/evil-rabbit.png',
+  '/customers/emil-kowalski.png',
+  '/customers/amy-burns.png',
+  '/customers/balazs-orban.png',
+];

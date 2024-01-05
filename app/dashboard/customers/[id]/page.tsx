@@ -1,4 +1,4 @@
-import { fetchUserById } from '@/app/lib/data';
+import { fetchCustomerById } from '@/app/lib/data';
 import { lusitana } from '@/app/ui/fonts';
 import Breadcrumbs from '@/app/ui/shared/breadcrumbs';
 import Image from 'next/image';
@@ -9,7 +9,7 @@ export default async function CustomerPage({
 }: {
   params: { id: string };
 }) {
-  const customer = await fetchUserById(params.id);
+  const customer = await fetchCustomerById(params.id);
 
   if (!customer) {
     return notFound();

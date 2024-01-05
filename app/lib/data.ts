@@ -260,12 +260,13 @@ export async function getUser(email: string) {
   }
 }
 
-export async function fetchUserById(id: string) {
+export async function fetchCustomerById(id: string) {
   try {
-    const user = await sql`SELECT * FROM customers WHERE customers.id=${id}`;
-    return user.rows[0];
+    const customer =
+      await sql`SELECT * FROM customers WHERE customers.id=${id}`;
+    return customer.rows[0];
   } catch (error) {
-    console.error('Faild fetch user: ', error);
-    throw new Error('Faild to fetch user.');
+    console.error('Faild fetch customer: ', error);
+    throw new Error('Faild to fetch customer.');
   }
 }

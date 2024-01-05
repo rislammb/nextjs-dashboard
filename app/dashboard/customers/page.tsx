@@ -1,5 +1,5 @@
 import { fetchCustomersPages } from '@/app/lib/data';
-import { CreateCustomers } from '@/app/ui/customers/buttons';
+import { CreateCustomer } from '@/app/ui/customers/buttons';
 import CustomersTable from '@/app/ui/customers/table';
 import { lusitana } from '@/app/ui/fonts';
 import Pagination from '@/app/ui/shared/pagination';
@@ -33,7 +33,7 @@ export default async function Page({
 
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search Customers.." />
-        <CreateCustomers />
+        <CreateCustomer />
       </div>
 
       <Suspense key={query + currentPage} fallback={<CustomersTableSkeleton />}>

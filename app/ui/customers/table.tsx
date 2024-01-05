@@ -1,4 +1,5 @@
 import { fetchFilteredCustomers } from '@/app/lib/data';
+import { DeleteCustomer } from '@/app/ui/customers/buttons';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -83,6 +84,7 @@ export default async function CustomersTable({
                   <th scope="col" className="px-4 py-5 font-medium">
                     Total Paid
                   </th>
+                  <th scope="col" className="px-4 py-5 font-medium"></th>
                 </tr>
               </thead>
 
@@ -122,6 +124,11 @@ export default async function CustomersTable({
                     </td>
                     <td className="whitespace-nowrap bg-white px-4 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md">
                       {customer.total_paid}
+                    </td>
+                    <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                      {customer.total_invoices < 1 && (
+                        <DeleteCustomer id={customer.id} />
+                      )}
                     </td>
                   </tr>
                 ))}
