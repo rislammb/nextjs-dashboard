@@ -30,7 +30,12 @@ export async function fetchLatestInvoices() {
 
   try {
     const data = await sql<LatestInvoiceRaw>`
-      SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
+      SELECT
+        invoices.amount,
+        customers.name,
+        customers.image_url,
+        customers.email,
+        invoices.id
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
       ORDER BY invoices.date DESC
@@ -103,7 +108,7 @@ export async function fetchFilteredInvoices(
         customers.name,
         customers.email,
         customers.image_url
-        FROM invoices
+      FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
       WHERE
         customers.name ILIKE ${`%${query}%`} OR
@@ -266,7 +271,7 @@ export async function fetchCustomerById(id: string) {
   noStore();
 
   try {
-    const customer = await sql<CustomersTableType>`
+    const data = await sql<CustomersTableType>`
       SELECT
         customers.id,
         customers.name,
@@ -280,8 +285,23 @@ export async function fetchCustomerById(id: string) {
       WHERE customers.id = ${id}
       GROUP BY customers.id, customers.name, customers.email, customers.image_url
       `;
+    const customer = {
+      ...data.rows[0],
+      total_pending: formatCurrency(data.rows[0].total_pending),
+      total_paid: formatCurrency(data.rows[0].total_paid),
+    };
 
-    return customer.rows[0];
+    const invoices = await sql`
+    SELECT
+      invoices.id,
+      invoices.amount,
+      invoices.date,
+      invoices.status
+    FROM invoices
+    WHERE invoices.customer_id = ${id}
+    ORDER BY invoices.date DESC`;
+
+    return { ...customer, invoices: invoices.rows };
   } catch (error) {
     console.error('Faild fetch customer: ', error);
     throw new Error('Faild to fetch customer.');

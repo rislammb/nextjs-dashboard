@@ -98,6 +98,7 @@ export async function deleteCustomer(id: string) {
   } catch (error) {
     return { message: 'Database Error: Faild to Delete Customer.' };
   }
+
   revalidatePath('/dashboard/customers');
   redirect('/dashboard/customers');
 }

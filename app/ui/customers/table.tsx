@@ -40,7 +40,7 @@ export default async function CustomersTable({
                             />
                           </Link>
                           <Link
-                            className="text-blue-600 transition-colors hover:text-blue-800"
+                            className="text-blue-600 transition-colors hover:text-blue-400"
                             href={`/dashboard/customers/${customer.id}`}
                           >
                             {customer.name}
@@ -49,8 +49,12 @@ export default async function CustomersTable({
                       </div>
                       <p className="text-sm text-gray-500">{customer.email}</p>
                     </div>
+
+                    <div className="text-sm">
+                      <p>{customer.total_invoices} invoices</p>
+                    </div>
                   </div>
-                  <div className="flex w-full items-center justify-between border-b py-5">
+                  <div className="flex w-full items-center justify-between py-5">
                     <div className="flex w-1/2 flex-col">
                       <p className="text-xs">Pending</p>
                       <p className="font-medium">{customer.total_pending}</p>
@@ -59,9 +63,10 @@ export default async function CustomersTable({
                       <p className="text-xs">Paid</p>
                       <p className="font-medium">{customer.total_paid}</p>
                     </div>
-                  </div>
-                  <div className="pt-4 text-sm">
-                    <p>{customer.total_invoices} invoices</p>
+                    <div className="flex justify-end gap-2">
+                      <UpdateCustomer id={customer.id} />
+                      <DeleteCustomer id={customer.id} />
+                    </div>
                   </div>
                 </div>
               ))}

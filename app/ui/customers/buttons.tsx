@@ -1,5 +1,6 @@
 import { deleteCustomer } from '@/app/lib/customer-actions';
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
 import Link from 'next/link';
 
 export function CreateCustomer() {
@@ -14,25 +15,37 @@ export function CreateCustomer() {
   );
 }
 
-export function UpdateCustomer({ id }: { id: string }) {
+export function UpdateCustomer({ id, text }: { id: string; text?: string }) {
   return (
     <Link
       href={`/dashboard/customers/${id}/edit`}
-      className="rounded-md border p-1.5 transition-all hover:border-gray-400 hover:text-blue-400"
+      className={clsx(
+        'rounded-md border p-1.5 text-blue-600 transition-all hover:border-gray-300 hover:text-blue-400',
+        {
+          'flex items-center gap-2': text,
+        },
+      )}
     >
       <PencilIcon className="w-5" />
+      {text && <span>{text}</span>}
     </Link>
   );
 }
 
-export function DeleteCustomer({ id }: { id: string }) {
+export function DeleteCustomer({ id, text }: { id: string; text?: string }) {
   const deleteCustomerWithId = deleteCustomer.bind(null, id);
 
   return (
     <form action={deleteCustomerWithId}>
-      <button className="rounded-md border p-1.5 text-red-600 transition-all hover:border-gray-400 hover:text-red-400">
+      <button
+        className={clsx(
+          'rounded-md border p-1.5 text-red-500 transition-all hover:border-gray-300 hover:text-red-400',
+          { 'flex items-center gap-2': text },
+        )}
+      >
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
+        {text && <span>{text}</span>}
       </button>
     </form>
   );
