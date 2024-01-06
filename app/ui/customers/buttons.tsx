@@ -18,7 +18,7 @@ export function UpdateCustomer({ id }: { id: string }) {
   return (
     <Link
       href={`/dashboard/customers/${id}/edit`}
-      className="rounded-md border p-2 hover:bg-gray-100"
+      className="rounded-md border p-1.5 transition-all hover:border-gray-400 hover:text-blue-400"
     >
       <PencilIcon className="w-5" />
     </Link>
@@ -30,7 +30,7 @@ export function DeleteCustomer({ id }: { id: string }) {
 
   return (
     <form action={deleteCustomerWithId}>
-      <button className="rounded-md border p-1.5 text-red-600 transition-all hover:border-gray-300 hover:text-red-400">
+      <button className="rounded-md border p-1.5 text-red-600 transition-all hover:border-gray-400 hover:text-red-400">
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>

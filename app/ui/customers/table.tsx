@@ -1,5 +1,5 @@
 import { fetchFilteredCustomers } from '@/app/lib/data';
-import { DeleteCustomer } from '@/app/ui/customers/buttons';
+import { DeleteCustomer, UpdateCustomer } from '@/app/ui/customers/buttons';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -69,29 +69,35 @@ export default async function CustomersTable({
             <table className="hidden min-w-full rounded-md text-gray-900 md:table">
               <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                 <tr>
-                  <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                  <th
+                    scope="col"
+                    className="px-1.5 py-5 font-medium sm:pl-6 lg:px-3"
+                  >
                     Name
                   </th>
-                  <th scope="col" className="px-3 py-5 font-medium">
+                  <th scope="col" className="px-1.5 py-5 font-medium lg:px-3">
                     Email
                   </th>
-                  <th scope="col" className="px-3 py-5 font-medium">
+                  <th scope="col" className="px-1.5 py-5 font-medium lg:px-3">
                     Total Invoices
                   </th>
-                  <th scope="col" className="px-3 py-5 font-medium">
+                  <th scope="col" className="px-1.5 py-5 font-medium lg:px-3">
                     Total Pending
                   </th>
-                  <th scope="col" className="px-4 py-5 font-medium">
+                  <th scope="col" className="px-1.5 py-5 font-medium lg:px-3">
                     Total Paid
                   </th>
-                  <th scope="col" className="px-4 py-5 font-medium"></th>
+                  <th
+                    scope="col"
+                    className="px-1.5 py-5 font-medium lg:px-3"
+                  ></th>
                 </tr>
               </thead>
 
               <tbody className="divide-y divide-gray-200 text-gray-900">
                 {customers.map((customer) => (
                   <tr key={customer.id} className="group">
-                    <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
+                    <td className="whitespace-nowrap bg-white py-5 pl-2 pr-1.5 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6 lg:pl-4 lg:pr-3">
                       <div className="flex items-center gap-3">
                         <Link
                           className="w-[28px] transition-opacity hover:opacity-80"
@@ -113,22 +119,23 @@ export default async function CustomersTable({
                         </Link>
                       </div>
                     </td>
-                    <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                    <td className="whitespace-nowrap bg-white px-2 py-5 text-sm lg:px-4">
                       {customer.email}
                     </td>
-                    <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                    <td className="whitespace-nowrap bg-white px-2 py-5 text-sm lg:px-4">
                       {customer.total_invoices}
                     </td>
-                    <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                    <td className="whitespace-nowrap bg-white px-2 py-5 text-sm lg:px-4">
                       {customer.total_pending}
                     </td>
-                    <td className="whitespace-nowrap bg-white px-4 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md">
+                    <td className="whitespace-nowrap bg-white px-2 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md lg:px-4">
                       {customer.total_paid}
                     </td>
-                    <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                      {customer.total_invoices < 1 && (
+                    <td className="whitespace-nowrap bg-white px-2 py-5 text-sm lg:px-4">
+                      <div className="flex justify-end gap-1.5 lg:gap-3">
+                        <UpdateCustomer id={customer.id} />
                         <DeleteCustomer id={customer.id} />
-                      )}
+                      </div>
                     </td>
                   </tr>
                 ))}

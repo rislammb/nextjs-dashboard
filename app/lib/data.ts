@@ -251,6 +251,8 @@ export async function fetchFilteredCustomers(
 }
 
 export async function getUser(email: string) {
+  noStore();
+
   try {
     const user = await sql`SELECT * FROM users WHERE email=${email}`;
     return user.rows[0] as User;
@@ -261,9 +263,24 @@ export async function getUser(email: string) {
 }
 
 export async function fetchCustomerById(id: string) {
+  noStore();
+
   try {
-    const customer =
-      await sql`SELECT * FROM customers WHERE customers.id=${id}`;
+    const customer = await sql<CustomersTableType>`
+      SELECT
+        customers.id,
+        customers.name,
+        customers.email,
+        customers.image_url,
+        COUNT(invoices.id) AS total_invoices,
+        SUM(CASE WHEN invoices.status = 'pending' THEN invoices.amount ELSE 0 END) AS total_pending,
+        SUM(CASE WHEN invoices.status = 'paid' THEN invoices.amount ELSE 0 END) AS total_paid
+      FROM customers
+      LEFT JOIN invoices ON customers.id = invoices.customer_id
+      WHERE customers.id = ${id}
+      GROUP BY customers.id, customers.name, customers.email, customers.image_url
+      `;
+
     return customer.rows[0];
   } catch (error) {
     console.error('Faild fetch customer: ', error);

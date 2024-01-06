@@ -56,15 +56,48 @@ export async function createCustomer(prevState: State, formData: FormData) {
   redirect('/dashboard/customers');
 }
 
+export async function updateCustomer(
+  id: string,
+  prevState: State,
+  formData: FormData,
+) {
+  const validatedFields = CreateCustomer.safeParse({
+    name: formData.get('name'),
+    email: formData.get('email'),
+    imageUrl: formData.get('imageUrl'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Faild to Update Customer',
+    };
+  }
+
+  const { name, email, imageUrl } = validatedFields.data;
+
+  try {
+    await sql`UPDATE customers
+      SET name = ${name}, email = ${email}, image_url = ${imageUrl}
+      WHERE id = ${id}
+    `;
+  } catch (error) {
+    return { message: 'Database Error: Faild to Updata Customer' };
+  }
+
+  revalidatePath('/dashboard/customers');
+  redirect('/dashboard/customers');
+}
+
 export async function deleteCustomer(id: string) {
   try {
     await sql`
       DELETE FROM customers
       WHERE customers.id=${id}
     `;
-    revalidatePath('/dashboard/customers');
-    return { message: 'Deleted Customer' };
   } catch (error) {
     return { message: 'Database Error: Faild to Delete Customer.' };
   }
+  revalidatePath('/dashboard/customers');
+  redirect('/dashboard/customers');
 }
