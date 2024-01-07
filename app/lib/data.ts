@@ -6,19 +6,48 @@ import {
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
-  Revenue,
   User,
 } from './definitions';
-import { formatCurrency } from './utils';
+import { formatCurrency, formatMonthToLocal } from './utils';
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
   noStore();
 
+  type RevenueResult = {
+    revenue: string;
+    date: string;
+  };
+
   try {
-    const data = await sql<Revenue>`SELECT * FROM revenue`;
-    return data.rows;
+    const data = await sql<RevenueResult>`
+    SELECT SUM(amount) AS revenue, date
+    FROM invoices WHERE status = 'paid'
+    GROUP BY date
+    ORDER BY date DESC
+    `;
+
+    type RevenueData = { revenue: number; month: string };
+
+    const newData = data.rows.reduce(
+      (acc: RevenueData[], cur: RevenueResult): RevenueData[] => {
+        const month = formatMonthToLocal(cur.date);
+        const index = acc.findIndex((obj: any) => obj.month === month);
+        if (index > -1) {
+          acc[index].revenue += Number(cur.revenue);
+        } else {
+          acc.push({ revenue: Number(cur.revenue), month });
+        }
+        return acc;
+      },
+      [],
+    );
+
+    return newData.slice(0, 12);
+
+    // const data = await sql<Revenue>`SELECT * FROM revenue`;
+    // return data.rows;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch revenue data.');
@@ -178,6 +207,8 @@ export async function fetchInvoiceById(id: string) {
 }
 
 export async function fetchCustomers() {
+  noStore();
+
   try {
     const data = await sql<CustomerField>`
       SELECT
