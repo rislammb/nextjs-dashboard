@@ -1,6 +1,6 @@
 'use client';
 
-import { createCustomer } from '@/app/lib/customer-actions';
+import { createCustomer } from '@/app/lib/actions/customer-actions';
 import { imageUrls } from '@/app/lib/utils';
 import { Button } from '@/app/ui/button';
 import {

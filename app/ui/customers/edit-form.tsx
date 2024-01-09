@@ -1,6 +1,6 @@
 'use client';
 
-import { updateCustomer } from '@/app/lib/customer-actions';
+import { updateCustomer } from '@/app/lib/actions/customer-actions';
 import { Customer } from '@/app/lib/definitions';
 import { imageUrls } from '@/app/lib/utils';
 import {
