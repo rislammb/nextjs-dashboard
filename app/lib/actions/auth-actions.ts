@@ -30,7 +30,7 @@ export async function authenticate(prevState: State, formData: FormData) {
     };
   } else {
     try {
-      await signIn('credentials', formData);
+      return await signIn('credentials', formData);
     } catch (error) {
       if (error instanceof AuthError) {
         switch (error.type) {

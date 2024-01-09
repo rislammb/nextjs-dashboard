@@ -9,8 +9,8 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useFormState } from 'react-dom';
-import { Button } from '../button';
+import { useFormState, useFormStatus } from 'react-dom';
+import { Button } from '../shared/button';
 
 export default function EditCustomerForm({ customer }: { customer: Customer }) {
   const initialState = { message: null, errors: {} };
@@ -30,7 +30,7 @@ export default function EditCustomerForm({ customer }: { customer: Customer }) {
               type="text"
               id="name"
               name="name"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
               placeholder="Abdullah..."
               defaultValue={customer.name}
               aria-describedby="name-error"
@@ -58,7 +58,7 @@ export default function EditCustomerForm({ customer }: { customer: Customer }) {
               type="text"
               id="email"
               name="email"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
               defaultValue={customer.email}
               placeholder="test@email.com"
               aria-describedby="email-error"
@@ -85,12 +85,12 @@ export default function EditCustomerForm({ customer }: { customer: Customer }) {
             <select
               name="imageUrl"
               id="imageUrl"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
               defaultValue={customer.image_url}
               aria-describedby="url-error"
             >
               <option value="" disabled>
-                Select a Url
+                Select a Image
               </option>
               {imageUrls.map((url: string) => (
                 <option value={url} key={url}>
@@ -124,9 +124,18 @@ export default function EditCustomerForm({ customer }: { customer: Customer }) {
           >
             Cancel
           </Link>
-          <Button type="submit">Edit Customer</Button>
+          <EditCustomer />
         </div>
       </div>
     </form>
+  );
+}
+
+function EditCustomer() {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" aria-disabled={pending}>
+      Edit Customer
+    </Button>
   );
 }

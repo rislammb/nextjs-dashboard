@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '../lib/actions/auth-actions';
-import { Button } from './button';
+import { Button } from './shared/button';
 
 export default function LoginForm() {
   const initialState = { message: null, errors: {} };
@@ -31,7 +31,7 @@ export default function LoginForm() {
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
                 id="email"
                 type="text"
                 name="email"
@@ -62,7 +62,7 @@ export default function LoginForm() {
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
                 id="password"
                 type="password"
                 name="password"
@@ -105,7 +105,7 @@ export default function LoginForm() {
 function LoginButton() {
   const { pending } = useFormStatus();
   return (
-    <Button className="mt-4 w-full" aria-disabled={pending}>
+    <Button className="mx-auto mt-4" aria-disabled={pending}>
       Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
     </Button>
   );

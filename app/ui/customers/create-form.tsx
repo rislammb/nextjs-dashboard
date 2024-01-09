@@ -2,14 +2,14 @@
 
 import { createCustomer } from '@/app/lib/actions/customer-actions';
 import { imageUrls } from '@/app/lib/utils';
-import { Button } from '@/app/ui/button';
+import { Button } from '@/app/ui/shared/button';
 import {
   EnvelopeIcon,
   PhotoIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useFormState } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 
 export default function Form() {
   const initialState = { message: null, errors: {} };
@@ -25,7 +25,7 @@ export default function Form() {
           </label>
           <div className="relative">
             <input
-              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
               id="name"
               type="text"
               name="name"
@@ -52,7 +52,7 @@ export default function Form() {
           </label>
           <div className="relative">
             <input
-              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
               id="email"
               type="text"
               name="email"
@@ -74,13 +74,13 @@ export default function Form() {
 
         <div className="mb-6">
           <label htmlFor="imageUrl" className="mb-2 block text-sm font-medium">
-            Choose Image
+            Choose Image Url
           </label>
           <div className="relative">
             <select
               name="imageUrl"
               id="imageUrl"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
               defaultValue=""
               aria-describedby="image-error"
             >
@@ -119,9 +119,18 @@ export default function Form() {
           >
             Cancel
           </Link>
-          <Button type="submit">Create Customer</Button>
+          <CreateButton />
         </div>
       </div>
     </form>
+  );
+}
+
+function CreateButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" aria-disabled={pending}>
+      Create Customer
+    </Button>
   );
 }

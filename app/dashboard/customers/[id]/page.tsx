@@ -35,8 +35,8 @@ export default async function CustomerPage({
         ]}
       />
 
-      <div className="flex flex-col items-center gap-4 p-4 md:p-8 lg:flex-row lg:gap-8">
-        <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center justify-center gap-8 xl:flex-row xl:gap-12">
+        <div className="mt-6 flex flex-1 flex-col items-center">
           <Image
             src={customer.image_url}
             width={98}
@@ -66,33 +66,38 @@ export default async function CustomerPage({
               <div>{customer.total_paid}</div>
             </li>
           </ul>
+
+          <div className="mt-6 flex justify-center gap-3">
+            <DeleteCustomer id={customer.id} text="Customer" />
+            <UpdateCustomer id={customer.id} text="Customer" />
+          </div>
         </div>
 
-        <div className="w-full overflow-auto rounded-lg bg-gray-50 p-2 md:pt-0">
+        <div className="w-full min-w-fit flex-1 overflow-auto rounded-lg bg-gray-50 p-2 md:pt-0">
           <table className="w-full rounded-md text-gray-900 ">
             <thead>
               <tr className="py-3">
                 <th
                   scope="col"
-                  className="px-1.5 py-3 text-left font-medium lg:px-3"
+                  className="px-2 py-3 text-left font-medium md:px-4"
                 >
                   Date
                 </th>
                 <th
                   scope="col"
-                  className="px-1.5  py-3 text-left font-medium lg:px-3"
+                  className="px-2  py-3 text-left font-medium md:px-4"
                 >
                   Amount
                 </th>
                 <th
                   scope="col"
-                  className="px-1.5  py-3 text-left font-medium lg:px-3"
+                  className="px-2  py-3 text-left font-medium md:px-4"
                 >
                   Status
                 </th>
                 <th
                   scope="col"
-                  className="px-1.5  py-3 text-left font-medium lg:px-3"
+                  className="px-2  py-3 text-left font-medium md:px-4"
                 >
                   <span className="sr-only">Actions</span>
                 </th>
@@ -105,16 +110,16 @@ export default async function CustomerPage({
                     key={invoice.id}
                     className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                   >
-                    <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+                    <td className="whitespace-nowrap px-2 py-3 md:px-4">
                       {formatDateToLocal(invoice.date)}
                     </td>
-                    <td className="px-3 py-1.5 text-sm font-medium">
+                    <td className="px-3 py-2 text-sm font-medium">
                       {formatCurrency(invoice.amount)}
                     </td>
-                    <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+                    <td className="whitespace-nowrap px-2 py-3 md:px-4">
                       <InvoiceStatus status={invoice.status} />
                     </td>
-                    <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+                    <td className="whitespace-nowrap px-2 py-3 md:px-4">
                       <div className="flex justify-end gap-1.5 lg:gap-3">
                         <UpdateInvoice id={invoice.id} />
                         <DeleteInvoice id={invoice.id} />
@@ -125,11 +130,6 @@ export default async function CustomerPage({
             </tbody>
           </table>
         </div>
-      </div>
-
-      <div className="mt-3 flex justify-center gap-3">
-        <DeleteCustomer id={customer.id} text="Customer" />
-        <UpdateCustomer id={customer.id} text="Customer" />
       </div>
     </main>
   );

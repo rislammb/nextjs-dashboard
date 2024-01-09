@@ -1,5 +1,6 @@
 import { deleteCustomer } from '@/app/lib/actions/customer-actions';
-import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
+import DeleteButton from '@/app/ui/shared/delete-button';
+import { PencilIcon, PlusIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
 
@@ -37,16 +38,7 @@ export function DeleteCustomer({ id, text }: { id: string; text?: string }) {
 
   return (
     <form action={deleteCustomerWithId}>
-      <button
-        className={clsx(
-          'rounded-md border p-1.5 text-red-500 transition-all hover:border-gray-300 hover:text-red-400',
-          { 'flex items-center gap-2': text },
-        )}
-      >
-        <span className="sr-only">Delete</span>
-        <TrashIcon className="w-5" />
-        {text && <span>{text}</span>}
-      </button>
+      <DeleteButton text={text} />
     </form>
   );
 }
