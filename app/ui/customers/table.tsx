@@ -49,60 +49,65 @@ export default async function CustomersTable({
                       </div>
                       <p className="text-sm text-gray-500">{customer.email}</p>
                     </div>
-
-                    <div className="text-sm">
-                      <p>{customer.total_invoices} invoices</p>
-                    </div>
-                  </div>
-                  <div className="flex w-full items-center justify-between py-5">
-                    <div className="flex w-1/2 flex-col">
-                      <p className="text-xs">Pending</p>
-                      <p className="font-medium">{customer.total_pending}</p>
-                    </div>
-                    <div className="flex w-1/2 flex-col">
-                      <p className="text-xs">Paid</p>
-                      <p className="font-medium">{customer.total_paid}</p>
-                    </div>
                     <div className="flex justify-end gap-2">
                       <UpdateCustomer id={customer.id} />
                       <DeleteCustomer id={customer.id} />
+                    </div>
+                  </div>
+                  <div className="flex w-full items-center justify-between py-5">
+                    <div>
+                      <p className="text-xs">Invoices</p>
+                      <p className="font-medium">{customer.total_invoices}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs">Pending</p>
+                      <p className="font-medium">{customer.total_pending}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs">Paid</p>
+                      <p className="font-medium">{customer.total_paid}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
             <table className="hidden min-w-full rounded-md text-gray-900 md:table">
-              <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
+              <thead className="rounded-lg text-left text-sm font-normal">
                 <tr>
                   <th
                     scope="col"
-                    className="px-1.5 py-5 font-medium sm:pl-6 lg:px-3"
+                    className="px-1.5 py-4 font-medium sm:pl-6 lg:px-3"
                   >
                     Name
                   </th>
-                  <th scope="col" className="px-1.5 py-5 font-medium lg:px-3">
+                  <th scope="col" className="px-1.5 py-4 font-medium lg:px-3">
                     Email
                   </th>
-                  <th scope="col" className="px-1.5 py-5 font-medium lg:px-3">
+                  <th scope="col" className="px-1.5 py-4 font-medium lg:px-3">
                     Total Invoices
                   </th>
-                  <th scope="col" className="px-1.5 py-5 font-medium lg:px-3">
+                  <th scope="col" className="px-1.5 py-4 font-medium lg:px-3">
                     Total Pending
                   </th>
-                  <th scope="col" className="px-1.5 py-5 font-medium lg:px-3">
+                  <th scope="col" className="px-1.5 py-4 font-medium lg:px-3">
                     Total Paid
                   </th>
                   <th
                     scope="col"
-                    className="px-1.5 py-5 font-medium lg:px-3"
-                  ></th>
+                    className="relative py-3 pl-3 pr-1.5 lg:pl-6 lg:pr-3"
+                  >
+                    <span className="sr-only">Actions</span>
+                  </th>
                 </tr>
               </thead>
 
               <tbody className="divide-y divide-gray-200 text-gray-900">
                 {customers.map((customer) => (
-                  <tr key={customer.id} className="group">
-                    <td className="whitespace-nowrap bg-white py-5 pl-2 pr-1.5 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6 lg:pl-4 lg:pr-3">
+                  <tr
+                    key={customer.id}
+                    className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
+                  >
+                    <td className="whitespace-nowrap bg-white px-2 py-5 text-sm lg:px-4">
                       <div className="flex items-center gap-3">
                         <Link
                           className="w-[28px] transition-opacity hover:opacity-80"
@@ -133,7 +138,7 @@ export default async function CustomersTable({
                     <td className="whitespace-nowrap bg-white px-2 py-5 text-sm lg:px-4">
                       {customer.total_pending}
                     </td>
-                    <td className="whitespace-nowrap bg-white px-2 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md lg:px-4">
+                    <td className="whitespace-nowrap bg-white px-2 py-5 text-sm lg:px-4">
                       {customer.total_paid}
                     </td>
                     <td className="whitespace-nowrap bg-white px-2 py-5 text-sm lg:px-4">

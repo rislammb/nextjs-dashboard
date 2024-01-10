@@ -35,7 +35,7 @@ export default function EditInvoiceForm({
             <select
               id="customer"
               name="customerId"
-              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:ring-0 focus:drop-shadow"
               defaultValue={invoice.customer_id}
               aria-describedby="customer-error"
             >
@@ -75,7 +75,7 @@ export default function EditInvoiceForm({
                 step="0.01"
                 defaultValue={invoice.amount}
                 placeholder="Enter USD amount"
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:ring-0 focus:drop-shadow"
                 aria-describedby="amount-error"
               />
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />

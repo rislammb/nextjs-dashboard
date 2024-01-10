@@ -81,48 +81,59 @@ export default async function InvoicesTable({
                     scope="col"
                     className="relative py-3 pl-3 pr-1.5 lg:pl-6 lg:pr-3"
                   >
-                    <span className="sr-only">Edit</span>
+                    <span className="sr-only">Actions</span>
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white">
-                {invoices?.map((invoice) => (
-                  <tr
-                    key={invoice.id}
-                    className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
-                  >
-                    <td className="whitespace-nowrap py-3 pl-3 pr-1.5 lg:pl-6 lg:pr-3">
-                      <div className="flex items-center gap-3">
-                        <Image
-                          src={invoice.image_url}
-                          className="rounded-full"
-                          width={28}
-                          height={28}
-                          alt={`${invoice.name}'s profile picture`}
-                        />
-                        <p>{invoice.name}</p>
-                      </div>
-                    </td>
-                    <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
-                      {invoice.email}
-                    </td>
-                    <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
-                      {formatCurrency(invoice.amount)}
-                    </td>
-                    <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
-                      {formatDateToLocal(invoice.date)}
-                    </td>
-                    <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
-                      <InvoiceStatus status={invoice.status} />
-                    </td>
-                    <td className="whitespace-nowrap py-3 pl-3 pr-1.5 lg:pl-6 lg:pr-3">
-                      <div className="flex justify-end gap-1.5 lg:gap-3">
-                        <UpdateInvoice id={invoice.id} />
-                        <DeleteInvoice id={invoice.id} />
-                      </div>
+                {invoices?.length > 0 ? (
+                  invoices.map((invoice) => (
+                    <tr
+                      key={invoice.id}
+                      className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
+                    >
+                      <td className="whitespace-nowrap py-3 pl-3 pr-1.5 lg:pl-6 lg:pr-3">
+                        <div className="flex items-center gap-3">
+                          <Image
+                            src={invoice.image_url}
+                            className="rounded-full"
+                            width={28}
+                            height={28}
+                            alt={`${invoice.name}'s profile picture`}
+                          />
+                          <p>{invoice.name}</p>
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+                        {invoice.email}
+                      </td>
+                      <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+                        {formatCurrency(invoice.amount)}
+                      </td>
+                      <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+                        {formatDateToLocal(invoice.date)}
+                      </td>
+                      <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+                        <InvoiceStatus status={invoice.status} />
+                      </td>
+                      <td className="whitespace-nowrap py-3 pl-3 pr-1.5 lg:pl-6 lg:pr-3">
+                        <div className="flex justify-end gap-1.5 lg:gap-3">
+                          <UpdateInvoice id={invoice.id} />
+                          <DeleteInvoice id={invoice.id} />
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr className="py-3">
+                    <td
+                      className="rounded-lg py-3 text-center text-yellow-600"
+                      colSpan={6}
+                    >
+                      No invoice found!
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>

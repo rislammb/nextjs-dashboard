@@ -8,7 +8,7 @@ export default function DeleteButton({ text }: { text?: string }) {
   return (
     <button
       aria-disabled={pending}
-      className="flex gap-1 rounded-md border p-1.5 text-red-500 transition-all hover:border-gray-300 hover:text-red-400 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+      className="flex gap-1 rounded-md border p-1.5 text-red-500 outline-none transition-all hover:border-gray-300 hover:text-red-400 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
     >
       <span className="sr-only">Delete</span>
       <TrashIcon className="w-5" />

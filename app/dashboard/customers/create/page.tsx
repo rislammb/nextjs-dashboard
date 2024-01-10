@@ -1,5 +1,10 @@
 import Form from '@/app/ui/customers/create-form';
 import Breadcrumbs from '@/app/ui/shared/breadcrumbs';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Create Customer',
+};
 
 export default function Page() {
   return (
@@ -11,7 +16,7 @@ export default function Page() {
             href: '/dashboard/customers',
           },
           {
-            label: 'Create Customers',
+            label: 'Create Customer',
             href: '/dashboard/customers/create',
             active: true,
           },

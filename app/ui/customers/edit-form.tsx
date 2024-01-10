@@ -30,7 +30,7 @@ export default function EditCustomerForm({ customer }: { customer: Customer }) {
               type="text"
               id="name"
               name="name"
-              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:ring-0 focus:drop-shadow"
               placeholder="Abdullah..."
               defaultValue={customer.name}
               aria-describedby="name-error"
@@ -58,7 +58,7 @@ export default function EditCustomerForm({ customer }: { customer: Customer }) {
               type="text"
               id="email"
               name="email"
-              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:ring-0 focus:drop-shadow"
               defaultValue={customer.email}
               placeholder="test@email.com"
               aria-describedby="email-error"
@@ -85,7 +85,7 @@ export default function EditCustomerForm({ customer }: { customer: Customer }) {
             <select
               name="imageUrl"
               id="imageUrl"
-              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:shadow-sm focus:ring-0"
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 focus:border-gray-300 focus:ring-0 focus:drop-shadow"
               defaultValue={customer.image_url}
               aria-describedby="url-error"
             >
