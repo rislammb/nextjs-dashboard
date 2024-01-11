@@ -4,33 +4,36 @@ import { formatCurrency, formatDateToLocal } from '@/app/lib/utils';
 import { DeleteInvoice, UpdateInvoice } from '../invoices/buttons';
 import InvoiceStatus from '../invoices/status';
 
-export default async function CustomerInvoices({ id }: { id: string }) {
-  const invoices = await fetchCustomerInvoices(id);
+export default async function CustomerInvoices({
+  id,
+  currentPage,
+}: {
+  id: string;
+  currentPage: number;
+}) {
+  const invoices = await fetchCustomerInvoices(id, currentPage);
 
   return (
     <div className="w-full flex-1 overflow-auto rounded-lg bg-gray-50 p-2 md:pt-0">
       <table className="w-full rounded-md text-gray-900 ">
         <thead>
-          <tr className="py-3">
-            <th scope="col" className="px-2 py-3 text-left font-medium md:px-4">
+          <tr>
+            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
               Date
             </th>
             <th
               scope="col"
-              className="px-2  py-3 text-left font-medium md:px-4"
+              className="px-2  py-5 text-left font-medium md:px-4"
             >
               Amount
             </th>
             <th
               scope="col"
-              className="px-2  py-3 text-left font-medium md:px-4"
+              className="px-2  py-5 text-left font-medium md:px-4"
             >
               Status
             </th>
-            <th
-              scope="col"
-              className="px-2  py-3 text-left font-medium md:px-4"
-            >
+            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
               <span className="sr-only">Actions</span>
             </th>
           </tr>
@@ -60,9 +63,9 @@ export default async function CustomerInvoices({ id }: { id: string }) {
               </tr>
             ))
           ) : (
-            <tr className="py-3">
+            <tr>
               <td
-                className="rounded-lg py-3 text-center text-yellow-600"
+                className="rounded-lg py-4 text-center text-yellow-600"
                 colSpan={4}
               >
                 No invoice found!

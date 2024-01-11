@@ -106,30 +106,30 @@ export function TableRowSkeleton() {
   return (
     <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
       {/* Customer Name and Image */}
-      <td className="relative overflow-hidden whitespace-nowrap py-3 pl-3 pr-1.5">
+      <td className="relative overflow-hidden whitespace-nowrap py-3 pl-4 pr-8 lg:pl-6 lg:pr-4">
         <div className="flex items-center gap-3">
           <div className="h-8 w-8 rounded-full bg-gray-100"></div>
           <div className="h-6 w-24 rounded bg-gray-100"></div>
         </div>
       </td>
       {/* Email */}
-      <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+      <td className="whitespace-nowrap px-2 py-3 lg:px-4">
         <div className="h-6 w-32 rounded bg-gray-100"></div>
       </td>
       {/* Amount */}
-      <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+      <td className="whitespace-nowrap px-2 py-3 lg:px-4">
         <div className="h-6 w-16 rounded bg-gray-100"></div>
       </td>
       {/* Date */}
-      <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+      <td className="whitespace-nowrap px-2 py-3 lg:px-4">
         <div className="h-6 w-20 rounded bg-gray-100"></div>
       </td>
       {/* Status */}
-      <td className="whitespace-nowrap px-1.5 py-3 lg:px-3">
+      <td className="whitespace-nowrap px-2 py-3 lg:px-4">
         <div className="h-6 w-16 rounded-full bg-gray-100"></div>
       </td>
       {/* Actions */}
-      <td className="whitespace-nowrap py-3 pl-3 pr-1.5">
+      <td className="whitespace-nowrap py-3 pl-2 pr-4 lg:pl-4 lg:pr-6">
         <div className="flex justify-end gap-3">
           <div className="h-8 w-8 rounded bg-blue-50"></div>
           <div className="h-8 w-8 rounded bg-red-50"></div>
@@ -182,24 +182,27 @@ export function InvoicesTableSkeleton() {
           <table className="hidden min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                  Customer
+                <th
+                  scope="col"
+                  className="py-6 pl-4 pr-2 font-medium lg:pl-6 lg:pr-4"
+                >
+                  Name
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-2 py-6 font-medium lg:px-4">
                   Email
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Amount
+                <th scope="col" className="px-2 py-6 font-medium lg:px-4">
+                  Total Invoices
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Date
+                <th scope="col" className="px-2 py-6 font-medium lg:px-4">
+                  Total Pending
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Status
+                <th scope="col" className="px-2 py-6 font-medium lg:px-4">
+                  Total Paid
                 </th>
                 <th
                   scope="col"
-                  className="relative pb-4 pl-3 pr-6 pt-2 sm:pr-6"
+                  className="relative py-6 pl-2 pr-4 lg:pl-4 lg:pr-6"
                 >
                   <span className="sr-only">Actions</span>
                 </th>
@@ -224,7 +227,7 @@ export function CustomersTableRowSkeleton() {
   return (
     <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
       {/* Customer Name */}
-      <td className="relative overflow-hidden whitespace-nowrap px-2 py-5 text-sm lg:px-4">
+      <td className="relative overflow-hidden whitespace-nowrap px-2 py-5 text-sm lg:pl-6 lg:pr-4">
         <div className="flex items-center gap-3">
           <div className="h-8 w-8 rounded-full bg-blue-50"></div>
           <div className="h-6 w-24 rounded bg-blue-50"></div>
@@ -247,7 +250,7 @@ export function CustomersTableRowSkeleton() {
         <div className="h-6 w-16 rounded bg-gray-100"></div>
       </td>
       {/* Actions */}
-      <td className="whitespace-nowrap px-2 py-5 text-sm lg:px-4">
+      <td className="whitespace-nowrap px-2 py-5 text-sm lg:pl-4 lg:pr-6">
         <div className="flex justify-end gap-3">
           <div className="h-8 w-8 rounded bg-blue-50"></div>
           <div className="h-8 w-8 rounded bg-red-50"></div>
@@ -309,25 +312,25 @@ export function CustomersTableSkeleton() {
               <tr>
                 <th
                   scope="col"
-                  className="px-1.5 py-4 font-medium sm:pl-6 lg:px-3"
+                  className="py-6 pl-4 pr-2 font-medium lg:pl-6 lg:pr-4"
                 >
                   Name
                 </th>
-                <th scope="col" className="px-1.5 py-4 font-medium lg:px-3">
+                <th scope="col" className="px-2 py-6 font-medium lg:px-4">
                   Email
                 </th>
-                <th scope="col" className="px-1.5 py-4 font-medium lg:px-3">
+                <th scope="col" className="px-2 py-6 font-medium lg:px-4">
                   Total Invoices
                 </th>
-                <th scope="col" className="px-1.5 py-4 font-medium lg:px-3">
+                <th scope="col" className="px-2 py-6 font-medium lg:px-4">
                   Total Pending
                 </th>
-                <th scope="col" className="px-1.5 py-4 font-medium lg:px-3">
+                <th scope="col" className="px-2 py-6 font-medium lg:px-4">
                   Total Paid
                 </th>
                 <th
                   scope="col"
-                  className="relative py-3 pl-3 pr-1.5 lg:pl-6 lg:pr-3"
+                  className="relative py-6 pl-2 pr-4 lg:pl-4 lg:pr-6"
                 >
                   <span className="sr-only">Actions</span>
                 </th>
@@ -405,31 +408,24 @@ export function CustomerInvoicesSkeleton() {
     <div className="w-full flex-1 overflow-auto rounded-lg bg-gray-50 p-2 md:pt-0">
       <table className="w-full rounded-md text-gray-900 ">
         <thead>
-          <tr className="py-3">
-            <th scope="col" className="px-2 py-3 text-left font-medium md:px-4">
+          <tr>
+            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
               Date
             </th>
-            <th
-              scope="col"
-              className="px-2  py-3 text-left font-medium md:px-4"
-            >
+            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
               Amount
             </th>
-            <th
-              scope="col"
-              className="px-2  py-3 text-left font-medium md:px-4"
-            >
+            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
               Status
             </th>
-            <th
-              scope="col"
-              className="px-2  py-3 text-left font-medium md:px-4"
-            >
+            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
               <span className="sr-only">Actions</span>
             </th>
           </tr>
         </thead>
         <tbody className="bg-white">
+          <CustomerInvoicesRow />
+          <CustomerInvoicesRow />
           <CustomerInvoicesRow />
           <CustomerInvoicesRow />
           <CustomerInvoicesRow />

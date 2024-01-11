@@ -310,6 +310,7 @@ export async function fetchCustomerById(id: string) {
       WHERE customers.id = ${id}
       GROUP BY customers.id, customers.name, customers.email, customers.image_url
       `;
+
     const customer = {
       ...data.rows[0],
       total_pending: formatCurrency(data.rows[0].total_pending),
@@ -323,8 +324,10 @@ export async function fetchCustomerById(id: string) {
   }
 }
 
-export async function fetchCustomerInvoices(id: string) {
+export async function fetchCustomerInvoices(id: string, currentPage: number) {
   noStore();
+
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
     const invoices = await sql<CustomerInvoicesType>`
@@ -335,9 +338,27 @@ export async function fetchCustomerInvoices(id: string) {
       invoices.status
     FROM invoices
     WHERE invoices.customer_id = ${id}
-    ORDER BY invoices.date DESC`;
+    ORDER BY invoices.date DESC
+    LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
 
     return invoices.rows;
+  } catch (error) {
+    console.error('Faild fetch customer invoices: ', error);
+    throw new Error('Faild to fetch customer invoices!');
+  }
+}
+
+export async function fetchCustomerInvoicesPages(id: string) {
+  noStore();
+
+  try {
+    const count = await sql`
+    SELECT COUNT (*)
+    FROM invoices
+    WHERE invoices.customer_id = ${id}`;
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
   } catch (error) {
     console.error('Faild fetch customer invoices: ', error);
     throw new Error('Faild to fetch customer invoices!');

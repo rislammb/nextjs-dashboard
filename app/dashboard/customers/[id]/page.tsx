@@ -1,7 +1,9 @@
+import { fetchCustomerInvoicesPages } from '@/app/lib/data';
 import { DeleteCustomer } from '@/app/ui/customers/buttons';
 import CustomerDetails from '@/app/ui/customers/customer-details';
 import CustomerInvoices from '@/app/ui/customers/customer-invoices';
 import Breadcrumbs from '@/app/ui/shared/breadcrumbs';
+import Pagination from '@/app/ui/shared/pagination';
 import {
   CustomerInvoicesSkeleton,
   DetailsCustomerSkeleton,
@@ -15,10 +17,15 @@ export const metadata: Metadata = {
 
 export default async function CustomerPage({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: { page: string };
 }) {
   const id = params.id;
+  const currentPage = Number(searchParams.page) || 1;
+
+  const totalPages = await fetchCustomerInvoicesPages(id);
 
   return (
     <main>
@@ -36,13 +43,14 @@ export default async function CustomerPage({
         ]}
       />
 
-      <div className="flex flex-col items-center justify-center gap-8 xl:flex-row xl:gap-12">
+      <div className="flex flex-col items-center justify-center gap-6 xl:flex-row xl:gap-12">
         <Suspense fallback={<DetailsCustomerSkeleton />}>
           <CustomerDetails id={id} />
         </Suspense>
         <Suspense fallback={<CustomerInvoicesSkeleton />}>
-          <CustomerInvoices id={id} />
+          <CustomerInvoices id={id} currentPage={currentPage} />
         </Suspense>
+        <Pagination totalPages={totalPages} />
       </div>
 
       <div className="mt-8 flex justify-center">
