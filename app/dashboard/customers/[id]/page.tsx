@@ -47,7 +47,7 @@ export default async function CustomerPage({
         <Suspense fallback={<DetailsCustomerSkeleton />}>
           <CustomerDetails id={id} />
         </Suspense>
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col overflow-y-auto items-center gap-2">
           <Suspense fallback={<CustomerInvoicesSkeleton />}>
             <CustomerInvoices id={id} currentPage={currentPage} />
           </Suspense>
