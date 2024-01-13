@@ -3,6 +3,7 @@ import { formatCurrency, formatDateToLocal } from '@/app/lib/utils';
 import { DeleteInvoice, UpdateInvoice } from '@/app/ui/invoices/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function InvoicesTable({
   query,
@@ -27,15 +28,25 @@ export default async function InvoicesTable({
                   >
                     <div className="flex items-center justify-between border-b pb-4">
                       <div>
-                        <div className="mb-2 flex items-center">
-                          <Image
-                            src={invoice.image_url}
-                            className="mr-2 rounded-full"
-                            width={28}
-                            height={28}
-                            alt={`${invoice.name}'s profile picture`}
-                          />
-                          <p>{invoice.name}</p>
+                        <div className="mb-2 flex items-center gap-3">
+                          <Link
+                            className="transition-opacity hover:opacity-80 focus:cursor-not-allowed focus:opacity-50"
+                            href={`/dashboard/customers/${invoice.customer_id}`}
+                          >
+                            <Image
+                              src={invoice.image_url}
+                              className="rounded-full"
+                              alt={`${invoice.name}'s profile picture`}
+                              width={28}
+                              height={28}
+                            />
+                          </Link>
+                          <Link
+                            className="text-blue-600 transition-colors hover:text-blue-400 focus:cursor-not-allowed focus:opacity-50"
+                            href={`/dashboard/customers/${invoice.customer_id}`}
+                          >
+                            {invoice.name}
+                          </Link>
                         </div>
                         <p className="text-sm text-gray-500">{invoice.email}</p>
                       </div>
@@ -99,14 +110,24 @@ export default async function InvoicesTable({
                     >
                       <td className="whitespace-nowrap py-3 pl-4 pr-8 lg:px-4">
                         <div className="flex w-full items-center gap-2">
-                          <Image
-                            src={invoice.image_url}
-                            className="rounded-full"
-                            width={28}
-                            height={28}
-                            alt={`${invoice.name}'s profile picture`}
-                          />
-                          <p>{invoice.name}</p>
+                          <Link
+                            className="w-[28px] transition-opacity hover:opacity-80 focus:cursor-not-allowed focus:opacity-50"
+                            href={`/dashboard/customers/${invoice.customer_id}`}
+                          >
+                            <Image
+                              src={invoice.image_url}
+                              className="rounded-full"
+                              alt={`${invoice.name}'s profile picture`}
+                              width={28}
+                              height={28}
+                            />
+                          </Link>
+                          <Link
+                            className="text-blue-600 transition-colors hover:text-blue-800 focus:cursor-not-allowed focus:opacity-50"
+                            href={`/dashboard/customers/${invoice.customer_id}`}
+                          >
+                            {invoice.name}
+                          </Link>
                         </div>
                       </td>
                       <td className="whitespace-nowrap px-2 py-3 lg:px-4">

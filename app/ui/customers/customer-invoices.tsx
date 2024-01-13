@@ -14,7 +14,7 @@ export default async function CustomerInvoices({
   const invoices = await fetchCustomerInvoices(id, currentPage);
 
   return (
-    <div className="w-full flex-1 overflow-auto rounded-lg bg-gray-50 p-2 md:pt-0">
+    <div className="w-full overflow-auto rounded-lg bg-gray-50 p-2 md:pt-0">
       <table className="w-full rounded-md text-gray-900 ">
         <thead>
           <tr>

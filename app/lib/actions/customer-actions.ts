@@ -93,7 +93,11 @@ export async function deleteCustomer(id: string) {
   try {
     await sql`
       DELETE FROM customers
-        WHERE id=${id}
+        WHERE id = ${id}
+    `;
+    await sql`
+      DELETE FROM invoices
+        WHERE customer_id = ${id}
     `;
   } catch (error) {
     return { message: 'Database Error: Faild to Delete Customer.' };

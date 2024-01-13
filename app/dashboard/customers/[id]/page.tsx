@@ -43,14 +43,16 @@ export default async function CustomerPage({
         ]}
       />
 
-      <div className="flex flex-col items-center justify-center gap-6 xl:flex-row xl:gap-12">
+      <div className="flex flex-col items-center justify-center gap-6 whitespace-nowrap lg:flex-row lg:gap-12">
         <Suspense fallback={<DetailsCustomerSkeleton />}>
           <CustomerDetails id={id} />
         </Suspense>
-        <Suspense fallback={<CustomerInvoicesSkeleton />}>
-          <CustomerInvoices id={id} currentPage={currentPage} />
-        </Suspense>
-        <Pagination totalPages={totalPages} />
+        <div className="flex flex-col items-center gap-2">
+          <Suspense fallback={<CustomerInvoicesSkeleton />}>
+            <CustomerInvoices id={id} currentPage={currentPage} />
+          </Suspense>
+          <Pagination totalPages={totalPages} />
+        </div>
       </div>
 
       <div className="mt-8 flex justify-center">

@@ -125,6 +125,7 @@ export async function fetchFilteredInvoices(
     const invoices = await sql<InvoicesTable>`
       SELECT
         invoices.id,
+        invoices.customer_id,
         invoices.amount,
         invoices.date,
         invoices.status,

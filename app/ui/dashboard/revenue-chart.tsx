@@ -40,7 +40,7 @@ export default async function RevenueChart() {
             ))}
           </div>
 
-          <div className=" grid grid-cols-12 items-end gap-2  sm:grid-cols-12 md:gap-4">
+          <div className="grid grid-cols-12 items-end gap-2  sm:grid-cols-12 md:gap-4">
             {revenue.map((month: Revenue) => (
               <div
                 key={month.month}
@@ -52,7 +52,7 @@ export default async function RevenueChart() {
                     height: `${(chartHeight / topLabel) * month.revenue}px`,
                   }}
                 ></div>
-                <p className="-rotate-90 text-sm text-gray-400 sm:rotate-0">
+                <p className="-rotate-90 text-sm text-gray-400 sm:rotate-0 lg:-rotate-90 xl:rotate-0">
                   {month.month.split(' ')[0]}
                 </p>
               </div>

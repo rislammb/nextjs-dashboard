@@ -12,7 +12,7 @@ export default async function CustomerDetails({ id }: { id: string }) {
   }
 
   return (
-    <div className="relative mt-6 flex flex-1 flex-col items-center">
+    <div className="relative mt-6 flex w-fit flex-col items-center">
       <Image
         src={customer.image_url}
         width={98}

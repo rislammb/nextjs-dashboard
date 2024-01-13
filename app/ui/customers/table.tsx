@@ -26,27 +26,25 @@ export default async function CustomersTable({
                   >
                     <div className="flex items-center justify-between border-b pb-4">
                       <div>
-                        <div className="mb-2 flex items-center">
-                          <div className="flex items-center gap-3">
-                            <Link
-                              className="transition-opacity hover:opacity-80"
-                              href={`/dashboard/customers/${customer.id}`}
-                            >
-                              <Image
-                                src={customer.image_url}
-                                className="rounded-full"
-                                alt={`${customer.name}'s profile picture`}
-                                width={28}
-                                height={28}
-                              />
-                            </Link>
-                            <Link
-                              className="text-blue-600 transition-colors hover:text-blue-400"
-                              href={`/dashboard/customers/${customer.id}`}
-                            >
-                              {customer.name}
-                            </Link>
-                          </div>
+                        <div className="mb-2 flex items-center gap-3">
+                          <Link
+                            className="transition-opacity hover:opacity-80 focus:cursor-not-allowed focus:opacity-50"
+                            href={`/dashboard/customers/${customer.id}`}
+                          >
+                            <Image
+                              src={customer.image_url}
+                              className="rounded-full"
+                              alt={`${customer.name}'s profile picture`}
+                              width={28}
+                              height={28}
+                            />
+                          </Link>
+                          <Link
+                            className="text-blue-600 transition-colors hover:text-blue-400 focus:cursor-not-allowed focus:opacity-50"
+                            href={`/dashboard/customers/${customer.id}`}
+                          >
+                            {customer.name}
+                          </Link>
                         </div>
                         <p className="text-sm text-gray-500">
                           {customer.email}
@@ -121,7 +119,7 @@ export default async function CustomersTable({
                       <td className="whitespace-nowrap bg-white py-3 pl-4 pr-2 text-sm lg:pl-6 lg:pr-4">
                         <div className="flex items-center gap-3">
                           <Link
-                            className="w-[28px] transition-opacity hover:opacity-80"
+                            className="w-[28px] transition-opacity hover:opacity-80 focus:cursor-not-allowed focus:opacity-50"
                             href={`/dashboard/customers/${customer.id}`}
                           >
                             <Image
@@ -133,7 +131,7 @@ export default async function CustomersTable({
                             />
                           </Link>
                           <Link
-                            className="text-blue-600 transition-colors hover:text-blue-800"
+                            className="text-blue-600 transition-colors hover:text-blue-800 focus:cursor-not-allowed focus:opacity-50"
                             href={`/dashboard/customers/${customer.id}`}
                           >
                             {customer.name}
