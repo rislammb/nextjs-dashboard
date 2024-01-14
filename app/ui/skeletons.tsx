@@ -405,33 +405,31 @@ function CustomerInvoicesRow() {
 
 export function CustomerInvoicesSkeleton() {
   return (
-    <div className="w-full flex-1 overflow-auto rounded-lg bg-gray-50 p-2 md:pt-0">
-      <table className="w-full rounded-md text-gray-900 ">
-        <thead>
-          <tr>
-            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
-              Date
-            </th>
-            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
-              Amount
-            </th>
-            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
-              Status
-            </th>
-            <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
-              <span className="sr-only">Actions</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white">
-          <CustomerInvoicesRow />
-          <CustomerInvoicesRow />
-          <CustomerInvoicesRow />
-          <CustomerInvoicesRow />
-          <CustomerInvoicesRow />
-          <CustomerInvoicesRow />
-        </tbody>
-      </table>
-    </div>
+    <table className="w-full rounded-md text-gray-900 ">
+      <thead>
+        <tr>
+          <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
+            Date
+          </th>
+          <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
+            Amount
+          </th>
+          <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
+            Status
+          </th>
+          <th scope="col" className="px-2 py-5 text-left font-medium md:px-4">
+            <span className="sr-only">Actions</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody className="bg-white">
+        <CustomerInvoicesRow />
+        <CustomerInvoicesRow />
+        <CustomerInvoicesRow />
+        <CustomerInvoicesRow />
+        <CustomerInvoicesRow />
+        <CustomerInvoicesRow />
+      </tbody>
+    </table>
   );
 }
