@@ -31,3 +31,21 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
   - The design of the focus input has been slightly updated.
   - Updated the design of the Active/Focus link.
   - Fixed some UI issues.
+ 
+## The following topics are covered here:
+- Getting Started
+- CSS Styling
+- Optimizing Fonts and Images
+- Creating Layouts and Pages
+- Navigating Between Pages
+- Setting Up Your Database
+- Fetching Data
+- Static and Dynamic Rendering
+- Streaming
+- Partial Prerendering
+- Adding Search and Pagination
+- Mutating Data
+- Handling Errors
+- Improving Accessibility
+- Adding Authentication
+- Adding Metadata
